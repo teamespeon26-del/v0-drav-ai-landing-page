@@ -4,9 +4,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Shield, User } from "lucide-react"
 import { LoginDialog } from "@/components/login-dialog"
+import { AdminLoginDialog } from "@/components/admin-login-dialog"
 
 export function HeroSection() {
   const [loginOpen, setLoginOpen] = useState(false)
+  const [adminLoginOpen, setAdminLoginOpen] = useState(false)
 
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center px-4 py-20">
@@ -52,6 +54,7 @@ export function HeroSection() {
           <Button
             size="lg"
             className="gap-2 rounded-full bg-primary px-8 py-6 text-base font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
+            onClick={() => setAdminLoginOpen(true)}
           >
             <Shield className="h-5 w-5" />
             Login as Admin
@@ -68,8 +71,9 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Login Dialog */}
+      {/* Login Dialogs */}
       <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
+      <AdminLoginDialog open={adminLoginOpen} onOpenChange={setAdminLoginOpen} />
     </section>
   )
 }
