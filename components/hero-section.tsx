@@ -1,7 +1,13 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Shield, User } from "lucide-react"
+import { LoginDialog } from "@/components/login-dialog"
 
 export function HeroSection() {
+  const [loginOpen, setLoginOpen] = useState(false)
+
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center px-4 py-20">
       {/* Background image overlay */}
@@ -54,12 +60,16 @@ export function HeroSection() {
             size="lg"
             variant="outline"
             className="gap-2 rounded-full border-secondary bg-secondary/10 px-8 py-6 text-base font-semibold text-secondary shadow-lg transition-all hover:bg-secondary hover:text-secondary-foreground hover:shadow-xl"
+            onClick={() => setLoginOpen(true)}
           >
             <User className="h-5 w-5" />
             Login as User / Patient
           </Button>
         </div>
       </div>
+
+      {/* Login Dialog */}
+      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
     </section>
   )
 }
